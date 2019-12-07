@@ -1,0 +1,18 @@
+# For standard Spring Boot parameters see:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+server:
+  servlet:
+    session:
+      timeout: 1000
+     
+spring:
+  data:    mongodb:      host: 192.168.99.104
+      port: 27017  
+  sleuth:
+    propagation-keys:
+    - installationnumber
+    log:
+      slf4j:
+        whitelisted-mdc-keys:  
+        - installationnumber
+
