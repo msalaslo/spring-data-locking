@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Sample DTO object. <b>Please remove for actual project implementation.</b>
+ * Customer DTO object
  *
  * @since 1.0.0
  * @author FaaS [faas@securitasdirect.es]
@@ -17,12 +17,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ItemDTO extends BaseDTO {
+public class CustomerDTO extends BaseDTO {
 
-    @Schema(description = "Application item code", required = true)
-    private String applicationCode;
-
-    @Schema(description = "Application description", required = true)
-    private String applicationDescription;
+    @Schema(description = "Customer first name", required = true)
+    public String firstName;
+    
+    @Schema(description = "Customer last name", required = true)
+    public String lastName;
 
 }

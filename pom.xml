@@ -42,18 +42,30 @@
 			<artifactId>springdoc-openapi-ui</artifactId>
 		</dependency>
 
-
 		<!-- Open Feign for Rest/SOAP clients -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
-		
+
+		<!-- Needed for @Lock Annotation -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId> 
+		</dependency>
+
+		<!-- Needed for @LockModeType annotation -->
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>javax.persistence-api</artifactId>
+		</dependency>
+
+		<!-- Spring Data MongoDB for CrudRepository abstraction and @Version annotation -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-junit</artifactId>
