@@ -1,8 +1,10 @@
 package com.verisure.vcp.mongodb.service;
 
 
-import com.verisure.vcp.mongodb.domain.entity.Customer;
 import java.util.List;
+
+import com.verisure.vcp.mongodb.domain.entity.Address;
+import com.verisure.vcp.mongodb.domain.entity.Customer;
 
 /**
  * Sample service interface used as template. <b>Please remove for actual project implementation.</b>
@@ -25,6 +27,13 @@ public interface CustomerService {
 	 * @param name The customer to modify.
 	 */
     void findAndModifyCustomer(String firstName, String lastName);
+    
+	/**
+	 * Find by id and modifies name of a customer.
+	 * 
+	 * @param name The customer to modify.
+	 */
+    void setAddress(long id, Address address);
 
 	/**
 	 * Gets all the customers.

@@ -1,12 +1,14 @@
 package com.verisure.vcp.mongodb.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.verisure.vcp.mongodb.domain.entity.Address;
 import com.verisure.vcp.mongodb.domain.entity.Customer;
 import com.verisure.vcp.mongodb.domain.repository.CustomerRepository;
 import com.verisure.vcp.mongodb.service.CustomerService;
@@ -59,6 +61,23 @@ public class CustomerServiceImpl implements CustomerService {
             LOGGER.debug("findAndModifyCustomers::Trying to save items by lastName:" + lastName + ", firstName:" + firstName);
         	customerRepository.save(customer);
             LOGGER.debug("findAndModifyCustomers::TSaved item by lastName:" + lastName + ", firstName:" + firstName);
+		}
+    }
+    
+	/**
+	 * Find by id and modifies name of a customer.
+	 * 
+	 * @param name The customer to modify.
+	 */
+    public void setAddress(long id, Address address) {
+        LOGGER.debug("setAddress::Trying to retrieve items by id:" + id);
+    	Optional<Customer> customerOp = customerRepository.findById(id);
+    	if (customerOp.isPresent()) {
+    	   	Customer customer = customerOp.get();
+    	   	customer.setAddress(address);
+            LOGGER.debug("findAndModifyCustomers::Trying to save items by id:" + id);
+        	customerRepository.save(customer);
+            LOGGER.debug("findAndModifyCustomers::Saved item by id:" + id);
 		}
     }
 

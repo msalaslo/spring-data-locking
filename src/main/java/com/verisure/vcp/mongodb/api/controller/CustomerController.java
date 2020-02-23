@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.verisure.vcp.mongodb.api.converter.CustomerConverter;
 import com.verisure.vcp.mongodb.api.dto.CustomerDTO;
+import com.verisure.vcp.mongodb.domain.entity.Address;
 import com.verisure.vcp.mongodb.service.CustomerService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -68,7 +70,7 @@ public class CustomerController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(
-            description = "Create an customer"
+            description = "Create a customer"
     )
     public void createCustomer(@Valid @RequestBody CustomerDTO request) {
         LOGGER.debug("Creating an item: {}", request.toString());
@@ -84,6 +86,17 @@ public class CustomerController {
     public void modifyCustomer(@Valid String firstName, String lastName) {
         LOGGER.debug("Modifying an item: {}", firstName);
         customerService.findAndModifyCustomer(firstName, lastName);
+    }
+    
+    @PutMapping("/{id}/addresses")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(
+            description = "set the address of a customer"
+    )
+    public void setAddress(@PathVariable @Valid long id, Address address) {
+        LOGGER.debug("Modifying an item: {}", id);
+        customerService.setAddress(id, address);
     }
 
 }
